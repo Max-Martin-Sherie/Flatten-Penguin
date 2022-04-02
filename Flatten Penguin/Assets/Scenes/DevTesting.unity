@@ -1152,11 +1152,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 587080290}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &590503345 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 590503345, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
-  m_PrefabInstance: {fileID: 1696015617060130062}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &616498103
 GameObject:
   m_ObjectHideFlags: 0
@@ -3464,34 +3459,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 590503345, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 590503345, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 590503345, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 420148929434149271, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 420148929434149271, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 493003552183076015, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1696015617781068335, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
-      propertyPath: m_previewCamera
-      value: 
-      objectReference: {fileID: 590503345}
     - target: {fileID: 1696015617964531260, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3539,10 +3506,6 @@ PrefabInstance:
     - target: {fileID: 1696015617964531263, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
       propertyPath: m_Name
       value: CharaController3D
-      objectReference: {fileID: 0}
-    - target: {fileID: 5468052928667314336, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
