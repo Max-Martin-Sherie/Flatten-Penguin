@@ -68,7 +68,20 @@ public class PlayerMovement : MonoBehaviour
 
         UpdateTargetPosition3D();
 
-        m_gravity = m_characterController.isGrounded ? 0f : m_gravity + m_gravityAcceleration * Time.deltaTime;
+        //m_gravity = m_characterController.isGrounded ? 0f : m_gravity + m_gravityAcceleration * Time.deltaTime;
+
+        if (Physics.Raycast(transform.position + Vector3.up * .25f, Vector3.down, out RaycastHit hit, 1f))
+        {
+            m_gravity = 0f;
+        }
+        else
+        {
+            m_gravity += m_gravityAcceleration * Time.deltaTime;
+        }
+
+        Debug.DrawLine(transform.position + Vector3.up, transform.position + Vector3.down);
+        
+        m_targetDirection =Vector3.ClampMagnitude(Vector3.ProjectOnPlane(m_targetDirection, hit.normal),1f);
         
         Vector3 displacement = m_targetDirection * (m_speed * Time.deltaTime) + (Vector3.down * m_gravity * Time.deltaTime);
         m_graphics3D.position = transform.position;
@@ -198,10 +211,10 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 destinationPos = m_destination;
         Vector3 direction = Vector3.zero;
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.DownArrow))
             direction += (destinationPos - m_origin).normalized * m_multiplier;
         
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow))
             direction += (m_origin - destinationPos).normalized  * m_multiplier;
         
         m_graphics2D.position += direction * Time.deltaTime * m_2DmovementSpeed;
