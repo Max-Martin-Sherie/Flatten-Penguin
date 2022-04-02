@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 1696015617781068334}
   - component: {fileID: 1696015617781068305}
   - component: {fileID: 1696015617781068335}
+  - component: {fileID: 1417236506}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -268,13 +269,25 @@ MonoBehaviour:
   m_graphics2D: {fileID: 190825593124064015}
   m_speed: 9
   m_rotationSpeed: 190
-  m_offSet: {x: -4, y: 4}
-  m_PlayerHeightoffset: 1.5
+  m_offSet: {x: -3, y: 2.5}
+  m_PlayerHeightoffset: 2
   m_cameraTransitionSpeed: 5
   m_movementSmoothTime: 0.2
   m_2DmovementSpeed: 3
   m_gravityAcceleration: 30
   m_2dExitOffset: 0.5
+--- !u!114 &1417236506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696015617781068304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81beb8fa9d612584a80c3d97a4e0493d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1696015617837435338
 GameObject:
   m_ObjectHideFlags: 0
