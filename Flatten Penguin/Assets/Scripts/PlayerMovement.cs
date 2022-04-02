@@ -89,7 +89,6 @@ public class PlayerMovement : MonoBehaviour
 
         m_animator.SetBool(m_isWalkingAnimatorID,m_targetDirection.magnitude >=.25f);
         
-        
         m_graphics3D.position = transform.position;
         m_graphics3D.LookAt(m_graphics3D.position + new Vector3(displacement.x,0,displacement.z) );
         m_characterController.Move(displacement);
@@ -201,8 +200,8 @@ public class PlayerMovement : MonoBehaviour
     private void OnExitSwitcherGate(Vector3 p_position)
     {
         m_graphics3D.GetChild(0).localRotation = quaternion.Euler(Vector3.zero);
-        transform.position = p_position;
-        
+        transform.position = p_position + m_normal * m_characterController.radius *2;
+        m_CameraTarget.position = transform.position;
         m_animator.SetBool(m_isNormalAnimatorID, true);
         m_animator.SetBool( m_isFlatDownAnimatorID, false);
         m_graphics2D.gameObject.SetActive(false);
