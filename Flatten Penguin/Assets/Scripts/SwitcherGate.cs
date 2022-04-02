@@ -35,6 +35,10 @@ public class SwitcherGate : SwitcherAbstract
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
+        
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, m_destination.transform.position);
+        
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, m_minPlayerDistance);
         

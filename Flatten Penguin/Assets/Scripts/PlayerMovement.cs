@@ -70,8 +70,6 @@ public class PlayerMovement : MonoBehaviour
 
         m_gravity = m_characterController.isGrounded ? 0f : m_gravity + m_gravityAcceleration * Time.deltaTime;
         
-        if(m_characterController.isGrounded)Debug.Log("grounded");
-        
         Vector3 displacement = m_targetDirection * (m_speed * Time.deltaTime) + (Vector3.down * m_gravity * Time.deltaTime);
         m_graphics3D.position = transform.position;
         m_graphics3D.LookAt(m_graphics3D.position + new Vector3(displacement.x,0,displacement.z) );
@@ -144,6 +142,13 @@ public class PlayerMovement : MonoBehaviour
         m_graphics2D.transform.position = m_origin;
         m_graphics2D.LookAt(m_origin + p_current.m_normal);
 
+
+        if (m_normal == Vector3.up)
+        {
+            m_graphics2D.transform.Rotate(Vector3.up, 180f);
+            Debug.Log("hey");
+        }
+
         m_multiplier = p_current.m_invert ? -1 : 1;
         
         m_graphics3D.gameObject.SetActive(false);
@@ -153,7 +158,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Switch(SwitcherAbstract p_current)
     {
-        
         m_currentSwitcher = p_current;
         m_nextSwitcher = p_current.m_destination;
         
@@ -184,7 +188,7 @@ public class PlayerMovement : MonoBehaviour
     void SetCameraPosition2D()
     {
         m_camera.position = m_CameraTarget.position + m_CameraTarget.forward*2.5f;
-        m_camera.LookAt(m_graphics2D.position);
+        m_camera.LookAt(m_graphics2D.position, m_normal);
     }
     
 
@@ -194,10 +198,10 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 destinationPos = m_destination;
         Vector3 direction = Vector3.zero;
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.LeftArrow))
             direction += (destinationPos - m_origin).normalized * m_multiplier;
         
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.RightArrow))
             direction += (m_origin - destinationPos).normalized  * m_multiplier;
         
         m_graphics2D.position += direction * Time.deltaTime * m_2DmovementSpeed;
