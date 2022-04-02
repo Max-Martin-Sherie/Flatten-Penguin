@@ -29,12 +29,19 @@ public class PlayerMovement : MonoBehaviour
     public static Dimension m_dimension = Dimension.ThreeDee;
 
     public delegate void SwitchDimensionDelegator(Vector3 p_startPosition,Transform p_destination, int p_multiplier, Vector3 p_normal, bool p_IsExit);
-
     public static SwitchDimensionDelegator OnSwitchDimension;
+
+    public delegate void VoidDelegator(SwitcherAbstract p_current);
+    public static VoidDelegator EnterSwitcherGate;
+    public static VoidDelegator Switching;
+    public delegate void VoidDelegator2( Vector3 p_position);
+    public static VoidDelegator2 ExitSwitcherGate;
     
     private void Awake()
     {
-        OnSwitchDimension += OnSwitch;
+        EnterSwitcherGate += OnEnterSwitcherGate;
+        ExitSwitcherGate += OnExitSwitcherGate;
+        Switching += Switch;
     }
 
     // Update is called once per frame
@@ -63,7 +70,9 @@ public class PlayerMovement : MonoBehaviour
 
         m_gravity = m_characterController.isGrounded ? 0f : m_gravity + m_gravityAcceleration * Time.deltaTime;
         
-        Vector3 displacement = m_targetDirection * (m_speed * Time.deltaTime) + Vector3.down * m_gravity;
+        if(m_characterController.isGrounded)Debug.Log("grounded");
+        
+        Vector3 displacement = m_targetDirection * (m_speed * Time.deltaTime) + (Vector3.down * m_gravity * Time.deltaTime);
         m_graphics3D.position = transform.position;
         m_graphics3D.LookAt(m_graphics3D.position + new Vector3(displacement.x,0,displacement.z) );
         m_characterController.Move(displacement);
@@ -109,41 +118,63 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
-    private int m_multiplier = 1;
-    private Vector3 m_normal;
-    private bool m_isExit;
-    
-    void OnSwitch(Vector3 p_startPosition, Transform p_destination, int p_multiplier, Vector3 p_normal, bool p_isExit)
-    {
-        if(!m_canSwitch) return;
-        m_destination = p_destination;
-        m_multiplier = p_multiplier;
-        m_isExit = p_isExit;
-        
-        switch (m_dimension)
-        {
-            case Dimension.ThreeDee:
-                m_graphics3D.gameObject.SetActive(false);
-                m_graphics2D.gameObject.SetActive(true);
-
-                m_graphics2D.position = p_startPosition;
-                m_graphics2D.LookAt(p_startPosition + p_normal);
-                m_origin = p_startPosition;
-                break;
-            case Dimension.TwoDee:
-                m_graphics3D.gameObject.SetActive(true);
-                m_graphics2D.gameObject.SetActive(false);
-
-                transform.position = p_startPosition;
-                break;
-        }
-
-        m_dimension = m_dimension == Dimension.ThreeDee ? m_dimension = Dimension.TwoDee : m_dimension = Dimension.ThreeDee;
-        m_canSwitch = false;
-    }
-    
     #region TwoDee
 
+    
+    private int m_multiplier = 1;
+    private Vector3 m_normal;
+    
+    private SwitcherAbstract m_currentSwitcher;
+    private SwitcherAbstract m_nextSwitcher;
+    
+    
+    private bool m_canSwitch;
+    
+    private Vector3 m_destination;
+    private Vector3 m_origin;
+    
+    private void OnEnterSwitcherGate(SwitcherAbstract p_current)
+    {
+        m_currentSwitcher = p_current;
+        m_nextSwitcher = p_current.m_destination;
+        
+        m_origin = m_currentSwitcher.transform.position;
+        m_destination = m_nextSwitcher.transform.position;
+        
+        m_graphics2D.transform.position = m_origin;
+        m_graphics2D.LookAt(m_origin + p_current.m_normal);
+
+        m_multiplier = p_current.m_invert ? -1 : 1;
+        
+        m_graphics3D.gameObject.SetActive(false);
+        m_graphics2D.gameObject.SetActive(true);
+        m_dimension = Dimension.TwoDee;
+    }
+
+    private void Switch(SwitcherAbstract p_current)
+    {
+        
+        m_currentSwitcher = p_current;
+        m_nextSwitcher = p_current.m_destination;
+        
+        m_origin = m_currentSwitcher.transform.position;
+        m_destination = m_nextSwitcher.transform.position;
+        
+        m_graphics2D.LookAt(m_graphics2D.transform.position + p_current.m_normal);
+
+        m_multiplier = p_current.m_invert ? -1 : 1;
+    }
+    
+    
+    private void OnExitSwitcherGate(Vector3 p_position)
+    {
+        transform.position = p_position;
+        
+        m_graphics3D.gameObject.SetActive(true);
+        m_graphics2D.gameObject.SetActive(false);
+        m_dimension = Dimension.ThreeDee;
+    }
+    
     private void UpdateTargetPosition2D()
     {
         m_CameraTarget.position = Vector3.Lerp(m_CameraTarget.position, m_graphics2D.position, Time.deltaTime * m_cameraTransitionSpeed);
@@ -156,16 +187,12 @@ public class PlayerMovement : MonoBehaviour
         m_camera.LookAt(m_graphics2D.position);
     }
     
-    private Transform m_destination;
-    private Vector3 m_origin;
-    
-    private bool m_canSwitch;
 
     [SerializeField] private float m_2dExitOffset =.25f; 
     
     void Update2D()
     {
-        Vector3 destinationPos = m_destination.position;
+        Vector3 destinationPos = m_destination;
         Vector3 direction = Vector3.zero;
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))
             direction += (destinationPos - m_origin).normalized * m_multiplier;
@@ -184,34 +211,13 @@ public class PlayerMovement : MonoBehaviour
         if (Vector3.Distance(m_graphics2D.position, destinationPos) > distanceBewteen)
             m_graphics2D.position = m_origin;
 
-        if(m_isExit)
-        {
-            if (m_canSwitch && Input.GetKeyDown(KeyCode.Space))
-            {
-                if (Vector3.Distance(m_graphics2D.position, m_origin) < m_2dExitOffset)
-                    OnSwitchDimension?.Invoke(m_origin, null, 0, Vector3.zero, false);
+        if (Vector3.Distance(m_graphics2D.position, m_origin) < m_2dExitOffset)
+            m_currentSwitcher.OnBegining();
+            
+        if (Vector3.Distance(m_graphics2D.position, destinationPos) < m_2dExitOffset)
+            m_nextSwitcher.OnBegining();
 
-                if (Vector3.Distance(m_graphics2D.position, destinationPos) < m_2dExitOffset)
-                    OnSwitchDimension?.Invoke(destinationPos, m_destination, 0, Vector3.zero, false);
-            }
-        }
-        else
-        {
-            if (Vector3.Distance(m_graphics2D.position, destinationPos) < m_2dExitOffset)
-            {
-                m_graphics2D.position = destinationPos;
-                SwitchDimensionOnInputInTrigger switcher = m_destination.GetComponent<SwitchDimensionOnInputInTrigger>();
-
-                m_origin = destinationPos;
-                
-                m_destination = switcher.m_destination;
-                m_normal = switcher.m_normal;
-                m_multiplier = switcher.m_invert? -1 : 1;
-                
-                
-                m_graphics2D.LookAt(m_origin + m_normal);
-            }
-        }
+        
         
         UpdateTargetPosition2D();
         SetCameraPosition2D();
