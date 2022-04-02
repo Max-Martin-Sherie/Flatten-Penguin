@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 29762
+  controlID: 49472
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 29763
+  controlID: 49473
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 29764
+  controlID: 49474
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,10 +223,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 62}
+      scrollPos: {x: 0, y: 190}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: ca9effff08edffff0aedfffffa680000
+      m_ExpandedIDs: 6a59fbff308bfbff20a1fbfffe71fcff0072fcffca88fcffca9effff08edffff0aedfffffa68000070c90000b6c90000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -502,13 +502,13 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -6.6168966, y: -1.4424276, z: 6.6399016}
+    m_Target: {x: -1.9667187, y: 1.7803264, z: 13.7294}
     speed: 2
-    m_Value: {x: -6.6168966, y: -1.4424276, z: 6.6399016}
+    m_Value: {x: -1.9667187, y: 1.7803264, z: 13.7294}
   m_RenderMode: 0
   m_CameraMode:
-    drawMode: 2
-    name: Shaded Wireframe
+    drawMode: 0
+    name: Shaded
     section: Shading Mode
   m_ValidateTrueMetals: 0
   m_DoValidateTrueMetals: 0
@@ -551,13 +551,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.12383562, y: -0.8337154, z: 0.20800631, w: 0.49636912}
+    m_Target: {x: 0.11461271, y: -0.88443965, z: 0.2979452, w: 0.34053865}
     speed: 2
-    m_Value: {x: 0.12383156, y: -0.833688, z: 0.20799948, w: 0.49635285}
+    m_Value: {x: 0.11460655, y: -0.8843921, z: 0.2979292, w: 0.34052035}
   m_Size:
-    m_Target: 6.481861
+    m_Target: 1.3884473
     speed: 2
-    m_Value: 6.481861
+    m_Value: 1.3884473
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -650,13 +650,13 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Scenes
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\maxma\OneDrive\Documents\GitHub\Flatten-Penguin\Flatten
     Penguin
@@ -664,8 +664,8 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 626b0000
-    m_LastClickedID: 27490
+    m_SelectedIDs: 606b0000
+    m_LastClickedID: 27488
     m_ExpandedIDs: 00000000d669000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -719,8 +719,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: c699ffff
-    m_LastClickedInstanceID: -26170
+    m_SelectedInstanceIDs: 6859fbff
+    m_LastClickedInstanceID: -304792
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -838,7 +838,7 @@ MonoBehaviour:
     m_CachedPref: 160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -26170
+  m_LastInspectedObjectInstanceID: -304792
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0

@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 1696015617781068334}
   - component: {fileID: 1696015617781068305}
   - component: {fileID: 1696015617781068335}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,13 +264,16 @@ MonoBehaviour:
   m_characterController: {fileID: 1696015617781068305}
   m_camera: {fileID: 1696015618010734714}
   m_CameraTarget: {fileID: 1696015616164349490}
-  m_graphics: {fileID: 1696015617837435339}
+  m_graphics3D: {fileID: 1696015617837435339}
+  m_graphics2D: {fileID: 190825593124064015}
   m_speed: 9
   m_rotationSpeed: 190
   m_offSet: {x: -4, y: 4}
   m_PlayerHeightoffset: 1.5
   m_cameraTransitionSpeed: 5
   m_movementSmoothTime: 0.2
+  m_2DmovementSpeed: 3
+  m_2dExitOffset: 0.25
 --- !u!1 &1696015617837435338
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1696015617837435339}
   m_Layer: 0
-  m_Name: Gaphics
+  m_Name: Gaphics3D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -467,13 +470,15 @@ GameObject:
   m_Component:
   - component: {fileID: 190825593124064015}
   - component: {fileID: 86825161413564685}
-  m_Layer: 0
-  m_Name: Player2D
+  - component: {fileID: 368467174}
+  - component: {fileID: 368467173}
+  m_Layer: 7
+  m_Name: Graphics2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &190825593124064015
 Transform:
   m_ObjectHideFlags: 0
@@ -482,7 +487,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7338913325008487390}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -3.793, y: 0.822, z: -2.319}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -509,6 +514,35 @@ MonoBehaviour:
   m_UVScale: {x: 1, y: 1}
   m_UVBias: {x: 0, y: 0}
   m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0, z: 0.4620015}
-  m_Size: {x: 1, y: 1, z: 0.06925818}
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
   m_FadeFactor: 1
+--- !u!54 &368467174
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7338913325008487390}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &368467173
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7338913325008487390}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
