@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
         //m_gravity = m_characterController.isGrounded ? 0f : m_gravity + m_gravityAcceleration * Time.deltaTime;
 
-        if (Physics.Raycast(transform.position + Vector3.up * .25f, Vector3.down, out RaycastHit hit, 1f))
+        if (Physics.Raycast(transform.position + Vector3.up * .25f, Vector3.down, out RaycastHit hit, .251f))
         {
             m_gravity = 0f;
         }
@@ -99,7 +99,8 @@ public class PlayerMovement : MonoBehaviour
 
     void SetCameraPosition3D()
     {
-        m_camera.position = m_CameraTarget.position + m_CameraTarget.forward*m_offSet.x+ m_CameraTarget.up * m_offSet.y;
+        m_camera.position = Vector3.MoveTowards(m_camera.position ,m_CameraTarget.position + m_CameraTarget.forward*m_offSet.x+ m_CameraTarget.up * m_offSet.y, 15f * Time.deltaTime);
+
         m_camera.LookAt(transform.position + transform.up * m_PlayerHeightoffset);
     }
     
@@ -200,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
 
     void SetCameraPosition2D()
     {
-        m_camera.position = m_CameraTarget.position + m_CameraTarget.forward*2.5f;
+        m_camera.position = Vector3.MoveTowards(m_camera.position ,m_CameraTarget.position + m_CameraTarget.forward*2.5f, 15f * Time.deltaTime);
         m_camera.LookAt(m_graphics2D.position, m_normal);
     }
     
