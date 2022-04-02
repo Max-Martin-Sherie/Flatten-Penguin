@@ -69,18 +69,13 @@ public class PlayerMovement : MonoBehaviour
         UpdateTargetPosition3D();
 
         //m_gravity = m_characterController.isGrounded ? 0f : m_gravity + m_gravityAcceleration * Time.deltaTime;
-
-        if (Physics.Raycast(transform.position + Vector3.up * .25f, Vector3.down, out RaycastHit hit, .251f))
+        if (Physics.Raycast(transform.position + Vector3.up * .25f, Vector3.down, out RaycastHit hit, .4f))
         {
             m_gravity = 0f;
         }
         else
-        {
             m_gravity += m_gravityAcceleration * Time.deltaTime;
-        }
 
-        Debug.DrawLine(transform.position + Vector3.up, transform.position + Vector3.down);
-        
         m_targetDirection =Vector3.ClampMagnitude(Vector3.ProjectOnPlane(m_targetDirection, hit.normal),1f);
         
         Vector3 displacement = m_targetDirection * (m_speed * Time.deltaTime) + (Vector3.down * m_gravity * Time.deltaTime);
