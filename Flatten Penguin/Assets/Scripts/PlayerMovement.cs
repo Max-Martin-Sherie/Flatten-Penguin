@@ -1,9 +1,11 @@
+using Unity.Mathematics;
 using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private CharacterController m_characterController;
     [SerializeField] private Transform m_camera;
+    [SerializeField] private Transform m_previewCamera;
     [SerializeField] private Transform m_CameraTarget;
     [SerializeField] private Transform m_graphics3D;
     [SerializeField] private Transform m_graphics2D;
@@ -16,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_movementSmoothTime = .2f;
     [SerializeField] private float m_2DmovementSpeed = 3f;
     [SerializeField] private float m_gravityAcceleration = 30f;
-    
+    [SerializeField] private Animator m_animator;
     private Vector3 m_targetDirection;
     private Vector3 velocity = Vector3.zero;
 
@@ -36,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
     public static VoidDelegator Switching;
     public delegate void VoidDelegator2( Vector3 p_position);
     public static VoidDelegator2 ExitSwitcherGate;
+    
+    private static readonly int m_isWalkingAnimatorID = Animator.StringToHash("isWalking");
+    private static readonly int m_isNormalAnimatorID = Animator.StringToHash("isNormal");
+    private static readonly int m_isFlatDownAnimatorID = Animator.StringToHash("isFlatDown");
+    private static readonly int m_isFlatWallAnimatorID = Animator.StringToHash("isFlatWall");
     
     private void Awake()
     {
@@ -79,6 +86,10 @@ public class PlayerMovement : MonoBehaviour
         m_targetDirection =Vector3.ClampMagnitude(Vector3.ProjectOnPlane(m_targetDirection, hit.normal),1f);
         
         Vector3 displacement = m_targetDirection * (m_speed * Time.deltaTime) + (Vector3.down * m_gravity * Time.deltaTime);
+
+        m_animator.SetBool(m_isWalkingAnimatorID,m_targetDirection.magnitude >=.25f);
+        
+        
         m_graphics3D.position = transform.position;
         m_graphics3D.LookAt(m_graphics3D.position + new Vector3(displacement.x,0,displacement.z) );
         m_characterController.Move(displacement);
@@ -139,9 +150,15 @@ public class PlayerMovement : MonoBehaviour
     
     private Vector3 m_destination;
     private Vector3 m_origin;
-    
+
+    private bool m_isDown;
+
     private void OnEnterSwitcherGate(SwitcherAbstract p_current)
     {
+        m_isDown = Vector3.up == p_current.m_normal;
+        m_animator.SetBool(m_isFlatDownAnimatorID, true);
+        m_animator.SetBool(m_isNormalAnimatorID, false);
+        
         m_currentSwitcher = p_current;
         m_nextSwitcher = p_current.m_destination;
         
@@ -160,13 +177,15 @@ public class PlayerMovement : MonoBehaviour
 
         m_multiplier = p_current.m_invert ? -1 : 1;
         
-        m_graphics3D.gameObject.SetActive(false);
+        m_graphics3D.position = new Vector3(0,1000f,0);
         m_graphics2D.gameObject.SetActive(true);
         m_dimension = Dimension.TwoDee;
     }
 
     private void Switch(SwitcherAbstract p_current)
     {
+        m_animator.SetBool( m_isFlatDownAnimatorID, true);
+        
         m_currentSwitcher = p_current;
         m_nextSwitcher = p_current.m_destination;
         
@@ -181,9 +200,11 @@ public class PlayerMovement : MonoBehaviour
     
     private void OnExitSwitcherGate(Vector3 p_position)
     {
+        m_graphics3D.GetChild(0).localRotation = quaternion.Euler(Vector3.zero);
         transform.position = p_position;
         
-        m_graphics3D.gameObject.SetActive(true);
+        m_animator.SetBool(m_isNormalAnimatorID, true);
+        m_animator.SetBool( m_isFlatDownAnimatorID, false);
         m_graphics2D.gameObject.SetActive(false);
         m_dimension = Dimension.ThreeDee;
     }
@@ -201,17 +222,35 @@ public class PlayerMovement : MonoBehaviour
     }
     
 
-    [SerializeField] private float m_2dExitOffset =.25f; 
-    
+    [SerializeField] private float m_2dExitOffset =.25f;
+
     void Update2D()
     {
         Vector3 destinationPos = m_destination;
         Vector3 direction = Vector3.zero;
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.DownArrow))
             direction += (destinationPos - m_origin).normalized * m_multiplier;
+
+        int multiplier = 1;
         
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow))
-            direction += (m_origin - destinationPos).normalized  * m_multiplier;
+        {
+            direction += (m_origin - destinationPos).normalized * m_multiplier;
+            multiplier = -1;
+        }
+        
+        m_animator.SetBool(m_isWalkingAnimatorID,direction != Vector3.zero);
+
+        if(direction != Vector3.zero)
+        {
+            Transform child = m_graphics3D.GetChild(0);
+            Vector3 directionOfTheStuff = m_isDown? -m_previewCamera.right :m_previewCamera.up;
+            if(m_multiplier == -1)
+                child.right = directionOfTheStuff  * multiplier * m_multiplier;
+            else
+                child.right = directionOfTheStuff  * -multiplier * m_multiplier;
+        }
+        
         
         m_graphics2D.position += direction * Time.deltaTime * m_2DmovementSpeed;
 
@@ -230,7 +269,6 @@ public class PlayerMovement : MonoBehaviour
         if (Vector3.Distance(m_graphics2D.position, destinationPos) < m_2dExitOffset)
             m_nextSwitcher.OnBegining();
 
-        
         
         UpdateTargetPosition2D();
         SetCameraPosition2D();
