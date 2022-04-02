@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SwitcherGate : SwitcherAbstract
@@ -9,19 +7,29 @@ public class SwitcherGate : SwitcherAbstract
     
     private void Update()
     {
-        if(PlayerMovement.m_dimension == PlayerMovement.Dimension.TwoDee) return;
+        if(PlayerMovement.m_dimension == PlayerMovement.Dimension.ThreeDee)
+        {
+            if (Vector3.Distance(transform.position, m_player.position + Vector3.up) <= m_minPlayerDistance)
+            {
+                if (m_canPress && Input.GetKeyDown(KeyCode.Space))
+                {
+                    m_canPress = false;
+                    PlayerMovement.EnterSwitcherGate?.Invoke(this);
+                }
+            }
+        }
         
-        if(Vector3.Distance(transform.position,m_player.position + Vector3.up) > m_minPlayerDistance) return;
-        if(Input.GetKeyDown(KeyCode.Space))
-            PlayerMovement.EnterSwitcherGate?.Invoke(this);
-        m_canPress = false;
+        if (Input.GetKeyUp(KeyCode.Space)) m_canPress = true;
     }
 
-    private bool m_canPress = false;
+    private bool m_canPress = true;
     public override void OnBegining()
     {
-        if (!Input.GetKey(KeyCode.Space)) m_canPress = true;
-        if (m_canPress && Input.GetKeyDown(KeyCode.Space)) PlayerMovement.ExitSwitcherGate(transform.position);
+        if (m_canPress && Input.GetKeyDown(KeyCode.Space))
+        {
+            m_canPress = false;
+            PlayerMovement.ExitSwitcherGate(transform.position);
+        }
     }
 
 #if UNITY_EDITOR
