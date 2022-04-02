@@ -663,12 +663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ced0f971bf745841bc265fa1909dc19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_destination: {fileID: 1718305990}
-  m_player: {fileID: 2098614438}
-  m_minPlayerDistance: 2.01
-  m_invert: 1
-  m_isExit: 0
-  m_normal: {x: 0, y: 0, z: 1}
 --- !u!23 &225032379
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1106,12 +1100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ced0f971bf745841bc265fa1909dc19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_destination: {fileID: 1683028013}
-  m_player: {fileID: 2098614438}
-  m_minPlayerDistance: 2.01
-  m_invert: 0
-  m_isExit: 1
-  m_normal: {x: 1, y: 0, z: 0}
 --- !u!1 &582497703
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,12 +1289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ced0f971bf745841bc265fa1909dc19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_destination: {fileID: 1001357400}
-  m_player: {fileID: 2098614438}
-  m_minPlayerDistance: 2.01
-  m_invert: 0
-  m_isExit: 1
-  m_normal: {x: -1, y: 0, z: 0}
 --- !u!23 &679796885
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1518,12 +1500,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ced0f971bf745841bc265fa1909dc19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_destination: {fileID: 225032377}
-  m_player: {fileID: 2098614438}
-  m_minPlayerDistance: 2.01
-  m_invert: 1
-  m_isExit: 1
-  m_normal: {x: 1, y: 0, z: 0}
 --- !u!23 &845875160
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1620,12 +1596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ced0f971bf745841bc265fa1909dc19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_destination: {fileID: 679796883}
-  m_player: {fileID: 2098614438}
-  m_minPlayerDistance: 2.01
-  m_invert: 1
-  m_isExit: 1
-  m_normal: {x: -1, y: 0, z: 0}
 --- !u!23 &1001357402
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2412,12 +2382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ced0f971bf745841bc265fa1909dc19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_destination: {fileID: 1603788491}
-  m_player: {fileID: 2098614438}
-  m_minPlayerDistance: 2.01
-  m_invert: 1
-  m_isExit: 1
-  m_normal: {x: 0, y: 1, z: 0}
 --- !u!23 &1413287309
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3109,12 +3073,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ced0f971bf745841bc265fa1909dc19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_destination: {fileID: 1413287307}
-  m_player: {fileID: 2098614438}
-  m_minPlayerDistance: 2.01
-  m_invert: 0
-  m_isExit: 1
-  m_normal: {x: 0, y: 1, z: 0}
 --- !u!23 &1603788493
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3358,12 +3316,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ced0f971bf745841bc265fa1909dc19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_destination: {fileID: 541472766}
-  m_player: {fileID: 2098614438}
-  m_minPlayerDistance: 2.01
-  m_invert: 1
-  m_isExit: 1
-  m_normal: {x: 1, y: 0, z: 0}
 --- !u!1 &1718305989
 GameObject:
   m_ObjectHideFlags: 0
@@ -3410,12 +3362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ced0f971bf745841bc265fa1909dc19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_destination: {fileID: 845875158}
-  m_player: {fileID: 2098614438}
-  m_minPlayerDistance: 2.01
-  m_invert: 0
-  m_isExit: 1
-  m_normal: {x: 1, y: 0, z: 0}
 --- !u!23 &1718305992
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3576,24 +3522,40 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 190825593124064015, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 190825593124064015, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 190825593124064015, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.50000155
       objectReference: {fileID: 0}
     - target: {fileID: 190825593124064015, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.49999997
       objectReference: {fileID: 0}
     - target: {fileID: 190825593124064015, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.50000006
       objectReference: {fileID: 0}
     - target: {fileID: 190825593124064015, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.4999985
+      objectReference: {fileID: 0}
+    - target: {fileID: 190825593124064015, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 190825593124064015, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 190825593124064015, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 1696015617781068335, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
       propertyPath: m_2dExitOffset
@@ -3650,6 +3612,10 @@ PrefabInstance:
     - target: {fileID: 1696015617964531263, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
       propertyPath: m_Name
       value: CharaController3D
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338913325008487390, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8010b5a032d04e2479924bac3f70042a, type: 3}
