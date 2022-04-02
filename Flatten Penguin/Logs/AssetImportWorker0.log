@@ -161,3 +161,39 @@ Received Import Request.
   path: Assets/Textures
   artifactKey: Guid(b2a7e2d4783c1474f8e7576a172e11d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Textures using Guid(b2a7e2d4783c1474f8e7576a172e11d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd10e5a3bb6b5bb7c93c8483b4ed0f2de') in 0.010818 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 140.288846 seconds.
+  path: Assets/Textures/fond simple.png
+  artifactKey: Guid(1be08032044724a4fbc5da2814e12da6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/fond simple.png using Guid(1be08032044724a4fbc5da2814e12da6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '055ee272ea9801205624728aef1656e2') in 0.077451 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 998.401920 seconds.
+  path: Assets/Fbx/TorcheOrigami.FBX
+  artifactKey: Guid(588ed3f37eca1e245bcf3beaf9af2bc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Fbx/TorcheOrigami.FBX using Guid(588ed3f37eca1e245bcf3beaf9af2bc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff878acf6d5f40fb52a9a80b3df9e5f3') in 1.527022 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 14.770940 seconds.
+  path: Assets/Prefabs/Décors/Eclairage/Flambeau.prefab
+  artifactKey: Guid(d0ad93376d6e9164d9366f45c5a6c4dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Décors/Eclairage/Flambeau.prefab using Guid(d0ad93376d6e9164d9366f45c5a6c4dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c77485c2562f078b3ded4c3271de844') in 0.044949 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 171.023304 seconds.
+  path: Assets/Prefabs/Décors/Eclairage/Flambeau.prefab
+  artifactKey: Guid(d0ad93376d6e9164d9366f45c5a6c4dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Décors/Eclairage/Flambeau.prefab using Guid(d0ad93376d6e9164d9366f45c5a6c4dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d7c39aa2c83b360c152321cf05e1257') in 0.019476 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 22.926331 seconds.
+  path: Assets/Prefabs/Décors/Eclairage/Flambeau.prefab
+  artifactKey: Guid(d0ad93376d6e9164d9366f45c5a6c4dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Décors/Eclairage/Flambeau.prefab using Guid(d0ad93376d6e9164d9366f45c5a6c4dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00ffe5d0ae296f50ba859c3b36c3a060') in 0.011627 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 19.255336 seconds.
+  path: Assets/Prefabs/Décors/Eclairage/Flambeau.prefab
+  artifactKey: Guid(d0ad93376d6e9164d9366f45c5a6c4dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Décors/Eclairage/Flambeau.prefab using Guid(d0ad93376d6e9164d9366f45c5a6c4dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd174e1d438859b36b5a9f7b8cfeb6fc') in 0.015735 seconds 
