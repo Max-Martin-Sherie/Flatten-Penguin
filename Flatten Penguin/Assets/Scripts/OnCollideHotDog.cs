@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Serialization;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class OnCollideHotDog : MonoBehaviour
@@ -28,6 +29,8 @@ public class OnCollideHotDog : MonoBehaviour
     
     [SerializeField, Tooltip("Layer du player")]
     private LayerMask m_playerLayer;
+
+    [SerializeField] private int m_badEndingSceneIndex = 2;
 
     private Transform m_player;
 
@@ -60,7 +63,7 @@ public class OnCollideHotDog : MonoBehaviour
                 m_gazDisplacement = -m_gazDisplacement;
             }
 
-            if (deathness >= 1f) Debug.Log("bad ending");
+            if (deathness >= 1f) SceneManager.LoadScene(m_badEndingSceneIndex);
         }
         
         m_gaz.transform.position += m_gazDisplacement * Time.deltaTime;
