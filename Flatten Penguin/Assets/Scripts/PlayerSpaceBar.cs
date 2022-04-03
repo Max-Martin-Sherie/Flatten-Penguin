@@ -18,7 +18,14 @@ public class PlayerSpaceBar : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(m_player == null) return;
-        m_inRange = Vector3.Distance(m_player.position, transform.position) <= m_range || m_inRange;
+        if (m_player == null) return;
+        if(PlayerMovement.m_dimension == PlayerMovement.Dimension.ThreeDee)
+        {
+            m_inRange = Vector3.Distance(m_player.position, transform.position) <= m_range || m_inRange;
+        }
+        else
+        {
+            m_inRange = Vector3.Distance(m_player.position, transform.position) <= .5f || m_inRange;
+        }
     }
 }
