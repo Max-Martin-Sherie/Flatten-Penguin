@@ -16,7 +16,12 @@ public class ToolsGoesBRRRRR : MonoBehaviour
         m_heyyy += heyyi;
     }
 
-    void heyyi() => PrefabUtility.RecordPrefabInstancePropertyModifications(gameObject);
+    void heyyi()
+    {
+#if UNITY_EDITOR
+        PrefabUtility.RecordPrefabInstancePropertyModifications(gameObject);
+#endif
+    }
     
     [ContextMenu("heyy!")]
     void heyyoo()
