@@ -272,10 +272,17 @@ public class PlayerMovement : MonoBehaviour
             m_graphics2D.position = m_origin;
 
         if (Vector3.Distance(m_graphics2D.position, m_origin) < m_2dExitOffset)
+        {
             m_currentSwitcher.OnBegining();
+            if (m_currentSwitcher is SwitcherGate) PlayerSpaceBar.m_inRange = true;
+        }
             
         if (Vector3.Distance(m_graphics2D.position, destinationPos) < m_2dExitOffset)
+        {
             m_nextSwitcher.OnBegining();
+            if (m_currentSwitcher is SwitcherGate) PlayerSpaceBar.m_inRange = true;
+            
+        }
 
         
         UpdateTargetPosition2D();
