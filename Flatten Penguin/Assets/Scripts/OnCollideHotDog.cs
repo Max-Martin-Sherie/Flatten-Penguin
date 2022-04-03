@@ -48,7 +48,7 @@ public class OnCollideHotDog : MonoBehaviour
     {
         if (m_hotDogIsOn)
         {
-            m_hotDog.transform.RotateAround(Vector3.up, 40f * Time.deltaTime);
+            m_hotDog.transform.RotateAround(Vector3.up, 4f * Time.deltaTime);
             return;
         }
 
