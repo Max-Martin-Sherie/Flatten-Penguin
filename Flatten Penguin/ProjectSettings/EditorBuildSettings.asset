@@ -5,13 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 09a43052888b8a54c8fcd09ccf4a6375
-  - enabled: 0
-    path: Assets/Scenes/DevTesting.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/LePInguinDeCrystal.unity
     guid: 0063feeaa91eb584eb27339a4d3cdd25
+  - enabled: 1
+    path: Assets/Scenes/EndScenes/BadEnding.unity
+    guid: 26c2194583c571c47b36b39c18715721
+  - enabled: 1
+    path: Assets/Scenes/EndScenes/GoodEnding.unity
+    guid: dc4bb58c5f21b8847a0a01b8741a68eb
   m_configObjects: {}
