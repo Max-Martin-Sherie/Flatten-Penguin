@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 m_targetDirection;
     private Vector3 velocity = Vector3.zero;
 
+    [SerializeField] private GameObject m_spaceBarFeedback;
     public enum Dimension
     {
         ThreeDee,
@@ -54,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerSpaceBar.m_inRange = false;
+        
         switch (m_dimension)
         {
             case Dimension.ThreeDee:
@@ -64,6 +68,11 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
         if (!Input.GetKey(KeyCode.Space)) m_canSwitch = true;
+    }
+
+    private void LateUpdate()
+    {
+        m_spaceBarFeedback.SetActive(PlayerSpaceBar.m_inRange);
     }
 
     #region ThreeDee

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class SwitcherGate : SwitcherAbstract
 {
-    [SerializeField] private Transform m_player;
-    [SerializeField] private float m_minPlayerDistance = 2f;
+    [SerializeField] public Transform m_player;
+    [SerializeField] public float m_minPlayerDistance = 2f;
     
     private void Update()
     {

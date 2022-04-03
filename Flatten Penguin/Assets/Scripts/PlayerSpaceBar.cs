@@ -6,36 +6,26 @@ using UnityEngine.UI;
 
 public class PlayerSpaceBar : MonoBehaviour
 {
-
-    [SerializeField] private LayerMask m_spaceLayer;
-    [SerializeField] private GameObject m_spaceBar;
+    private float m_range = 2.5f;
+    public static bool m_inRange = false;
+    private Transform m_player; 
     
-    
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        m_range = GetComponent<SwitcherGate>().m_minPlayerDistance;
+        m_player = GetComponent<SwitcherGate>().m_player;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 9)
+        if (m_player == null) return;
+        if(PlayerMovement.m_dimension == PlayerMovement.Dimension.ThreeDee)
         {
-            m_spaceBar.SetActive(true);
+            m_inRange = Vector3.Distance(m_player.position, transform.position) <= m_range || m_inRange;
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.layer == 9)
+        else
         {
-            m_spaceBar.SetActive(false);
+            m_inRange = Vector3.Distance(m_player.position, transform.position) <= .5f || m_inRange;
         }
     }
 }
