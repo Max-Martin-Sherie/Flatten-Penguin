@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Serialization;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class OnCollideHotDog : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class OnCollideHotDog : MonoBehaviour
     private Vector3 m_gazDisplacement;
 
     [SerializeField] private Volume m_volume;
+    [SerializeField] private RawImage m_greenScreen;
     
     [SerializeField, Tooltip("Layer du player")]
     private LayerMask m_playerLayer;
@@ -47,7 +49,7 @@ public class OnCollideHotDog : MonoBehaviour
             return;
         }
 
-        float deathness = Mathf.Clamp(Mathf.Abs(m_player.position.y + 2.3f - m_gaz.transform.position.y) / m_maxHeightOverPlayer, 0f, 1f);
+        float deathness = Mathf.Clamp((m_player.position.y + 2.3f - m_gaz.transform.position.y) / m_maxHeightOverPlayer, 0f, 1f);
 
         deathness = Mathf.Abs(deathness - 1f);
         if(!m_escaped)
@@ -63,7 +65,10 @@ public class OnCollideHotDog : MonoBehaviour
         
         m_gaz.transform.position += m_gazDisplacement * Time.deltaTime;
         
-        m_volume.weight = Mathf.Lerp(0,1, deathness);
+        m_volume.weight = deathness;
+        Color color = m_greenScreen.color;
+        color.a = Mathf.Pow(deathness, 16f);
+        m_greenScreen.color = color;
     }
 
     private void OnTriggerEnter(Collider p_other)
