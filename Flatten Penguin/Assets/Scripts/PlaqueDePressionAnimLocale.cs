@@ -6,16 +6,14 @@ using UnityEngine.Serialization;
 
 public class PlaqueDePressionAnimLocale : MonoBehaviour
 {
-    [SerializeField] private Vector3 m_initPos;
-    [SerializeField] bool m_isPressed = false;
-    [SerializeField] private float m_maxHeight;
+    Vector3 m_initPos;
+    bool m_isPressed = false;
     [SerializeField , Min(0f)] private float m_displacement;
-    [SerializeField] private float m_speed;
+    [SerializeField] private float m_speedDown;
+    [SerializeField] private float m_speedUp;
 
-    private void Start()
-    {
-        m_initPos = gameObject.transform.position;
-    }
+    private void Start() => m_initPos = gameObject.transform.position;
+    
 
     private bool m_placed = true;
     
@@ -27,7 +25,7 @@ public class PlaqueDePressionAnimLocale : MonoBehaviour
         if (m_isPressed)
         {
             if (transform.position.y > m_initPos.y - m_displacement)
-                transform.position += Vector3.down * (m_speed * 0.5f * Time.deltaTime);
+                transform.position += Vector3.down * (m_speedDown * 0.5f * Time.deltaTime);
             
             if(transform.position.y < m_initPos.y - m_displacement)
             {
@@ -41,7 +39,7 @@ public class PlaqueDePressionAnimLocale : MonoBehaviour
        
         if (transform.position.y < m_initPos.y)
         {
-            transform.position += Vector3.up * (m_speed * Time.deltaTime);
+            transform.position += Vector3.up * (m_speedUp * Time.deltaTime);
             if (transform.position.y > m_initPos.y)
             {
                 transform.position = m_initPos;
@@ -50,14 +48,12 @@ public class PlaqueDePressionAnimLocale : MonoBehaviour
         }
     }
 
-    [ContextMenu("A")]
     public void BeginPressure()
     {
         m_isPressed = true;
         m_placed = false;
     }
     
-    [ContextMenu("B")]
     public void EndPressure()
     {
         m_isPressed = false;
