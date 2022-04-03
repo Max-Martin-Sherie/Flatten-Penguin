@@ -12,14 +12,14 @@ public class ToolsGoesBRRRRR : MonoBehaviour
     void heyy()
     {
         m_heyyy += heyyi;
+        HEHEHEHEYy = Random.Range(-.2f, .2f);
     }
 
-    void heyyi() => HEHEHEHEYy = Random.Range(-.2f, .2f);
-    
+    void heyyi() => transform.position += transform.forward * HEHEHEHEYy;
     
     [ContextMenu("heyy!")]
     void heyyoo()
     {
-        transform.position += transform.forward * HEHEHEHEYy;
+        m_heyyy?.Invoke();
     }
 }
