@@ -11,10 +11,9 @@ public class PlaqueDePressionAnimLocale : MonoBehaviour
     [SerializeField , Min(0f)] private float m_displacement;
     [SerializeField] private float m_speedDown;
     [SerializeField] private float m_speedUp;
-
-    private void Start() => m_initPos = gameObject.transform.position;
     
-
+    
+    private void Start() => m_initPos = gameObject.transform.position;
     private bool m_placed = true;
     
     // Update is called once per frame
