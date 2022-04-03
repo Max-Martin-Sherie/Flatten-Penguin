@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2287033739936046477}
   - component: {fileID: 2887641362125525544}
   - component: {fileID: 1150108735191344866}
+  - component: {fileID: 4938513542378449560}
   m_Layer: 0
   m_Name: PyramideDog
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4938513542378449560
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510673713765861175}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 4.876438, z: 0.73293835}
+  m_Center: {x: 0, y: 0.06178093, z: 0.36646917}
