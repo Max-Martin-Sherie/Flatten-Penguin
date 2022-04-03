@@ -16,5 +16,9 @@ public class PlayerSpaceBar : MonoBehaviour
         m_player = GetComponent<SwitcherGate>().m_player;
     }
 
-    private void LateUpdate() => m_inRange = Vector3.Distance(m_player.position, transform.position) <= m_range || m_inRange;
+    private void LateUpdate()
+    {
+        if(m_player == null) return;
+        m_inRange = Vector3.Distance(m_player.position, transform.position) <= m_range || m_inRange;
+    }
 }
