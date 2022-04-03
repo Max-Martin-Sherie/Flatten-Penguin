@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using Newtonsoft.Json.Serialization;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -14,6 +15,10 @@ public class OnCollideHotDog : MonoBehaviour
     private GameObject m_hotDog;
     [SerializeField, Tooltip("Link le gaz")]
     private GameObject m_gaz;
+
+    [SerializeField] private ParticleSystem m_pickHotDog;
+    [SerializeField] float m_timerPS = 0.4f;
+    private bool m_psOn = false;
 
     private bool m_hotDogIsOn = true;
     
@@ -72,15 +77,27 @@ public class OnCollideHotDog : MonoBehaviour
         Color color = m_greenScreen.color;
         color.a = Mathf.Pow(deathness, 16f);
         m_greenScreen.color = color;
+
+        if (m_psOn)
+        {
+            m_timerPS -= Time.deltaTime;
+            if (m_timerPS < 0) m_psOn = false;
+            return;
+        }
+        m_pickHotDog.Stop();
     }
 
     private void OnTriggerEnter(Collider p_other)
     {
         if ((m_playerLayer.value & (1 << p_other.transform.gameObject.layer)) > 0)
         {
+            
             m_player = p_other.transform;
             m_hotDogIsOn = false;
             m_hotDog.SetActive(false);
+            m_pickHotDog.Play();
+            m_psOn = true;
+
         }
     }
 }
