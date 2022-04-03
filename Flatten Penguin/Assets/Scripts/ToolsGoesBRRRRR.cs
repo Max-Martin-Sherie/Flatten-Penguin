@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class ToolsGoesBRRRRR : MonoBehaviour
@@ -13,10 +14,9 @@ public class ToolsGoesBRRRRR : MonoBehaviour
     void heyy()
     {
         m_heyyy += heyyi;
-        HEHEHEHEYy = Random.Range(-.2f, .2f);
     }
 
-    void heyyi() => transform.position += transform.right * HEHEHEHEYy;
+    void heyyi() => PrefabUtility.RecordPrefabInstancePropertyModifications(gameObject);
     
     [ContextMenu("heyy!")]
     void heyyoo()
